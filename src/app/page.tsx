@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import style1 from "@/styles/app.module.css";
 import style2 from "@/styles/cikey.module.css";
+import Table from "@/components/Table";
 
 export default function Home() {
     return (
@@ -14,7 +15,8 @@ export default function Home() {
                 </Link>
                 <Link href="/tiktok">Tiktok</Link>
                 <Link href="/youtube">Youtube</Link>
-                <div>
+                <Table />
+                {/* <div>
                     <a
                         href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
                         target="_blank"
@@ -30,7 +32,7 @@ export default function Home() {
                             priority
                         />
                     </a>
-                </div>
+                </div> */}
             </div>
 
             {/* <div className={styles.center}>
