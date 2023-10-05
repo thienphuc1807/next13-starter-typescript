@@ -1,20 +1,29 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import Link from "next/link";
-import style1 from "@/styles/app.module.css";
-import style2 from "@/styles/cikey.module.css";
+"use client";
+// import styles from "./page.module.css";
+// import Link from "next/link";
+// import style1 from "@/styles/app.module.css";
+// import style2 from "@/styles/cikey.module.css";
 import Table from "@/components/Table";
+import { useEffect } from "react";
 
 export default function Home() {
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("http://localhost:8000/blogs");
+            const blogs = await response.json();
+            console.log(blogs);
+        };
+        fetchData();
+    }, []);
     return (
-        <main className={styles.main}>
-            <div className={styles.description}>
+        <main>
+            <div>
                 <p>Hello CiKey welcome to NextJS 13</p>
-                <Link href="/facebook" className={style1["red"]}>
+                {/* <Link href="/facebook" className={style1["red"]}>
                     <span className={style2["red"]}>Facebook</span>
                 </Link>
                 <Link href="/tiktok">Tiktok</Link>
-                <Link href="/youtube">Youtube</Link>
+                <Link href="/youtube">Youtube</Link> */}
                 <Table />
                 {/* <div>
                     <a

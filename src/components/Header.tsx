@@ -8,13 +8,22 @@ function Header() {
         <>
             <Navbar bg="dark" data-bs-theme="dark">
                 <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Link className="navbar-brand" href="/">
+                        Web Test
+                    </Link>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
+                        {/* <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="/youtube">Pricing</Nav.Link>
-                        {/* <Link href="/tiktok"><Nav.Link>Tiktok</Nav.Link></Link>
-                        <Link href="/youtube"><Nav.Link>Youtube</Nav.Link></Link> */}
+                        <Nav.Link href="/youtube">Pricing</Nav.Link> */}
+                        <Link href={"/facebook"} className="nav-link">
+                            Facebook
+                        </Link>
+                        <Link href={"/tiktok"} className="nav-link">
+                            Tiktok
+                        </Link>
+                        <Link href={"/youtube"} className="nav-link">
+                            Youtube
+                        </Link>
                     </Nav>
                 </Container>
             </Navbar>

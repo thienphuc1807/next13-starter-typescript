@@ -1,10 +1,12 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
+"use client";
+// import "./globals.css";
+// import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Container } from "react-bootstrap";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "Create Next App",
@@ -18,9 +20,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body >
                 <Header />
-                {children}
+                <Container>{children}</Container>
                 <Footer />
             </body>
         </html>
