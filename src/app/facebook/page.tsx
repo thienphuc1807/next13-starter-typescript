@@ -1,14 +1,19 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { Button } from "react-bootstrap";
 
 function Facebook() {
     const router = useRouter();
     return (
         <>
             <h1>This is Facebook</h1>
-            <button type="button" onClick={() => router.push("/")}>
+            <Button
+                variant="primary"
+                type="button"
+                onClick={() => router.push("/")}
+            >
                 Back to Home Page
-            </button>
+            </Button>
         </>
     );
 }
