@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface IProps {
     showModal: boolean;
@@ -19,7 +20,33 @@ function ModalStaticBackdrop(props: IProps) {
         setShowModal(false);
     };
     const handleSubmit = () => {
-        console.log("blog detail:", title, author, content);
+        if (title === "") {
+            toast.error("Please enter a title");
+            return;
+        }
+        if (author === "") {
+            toast.error("Please enter a author");
+            return;
+        }
+        if (content === "") {
+            toast.error("Please enter a content");
+            return;
+        }
+        fetch("http://localhost:8000/blogs", {
+            method: "POST",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, author, content }),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (res) {
+                    toast.success("Success!");
+                    handleClose();
+                }
+            });
     };
     const [title, setTitle] = useState<string>("");
     const [author, setAuthor] = useState<string>("");
