@@ -4,6 +4,8 @@ import AddNewModal from "./add.modal";
 import UpdateModal from "./update.modal";
 import { useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { mutate } from "swr";
 interface IProps {
     blogs: IBlog[];
 }
@@ -12,6 +14,24 @@ function AppTable(props: IProps) {
     const [blog, setBlog] = useState<IBlog | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [showEditModal, setShowEditModal] = useState<boolean>(false);
+    const handleDelete = (id: number) => {
+        if (confirm("Are you sure to delete blog number: " + id)) {
+            fetch(`http://localhost:8000/blogs/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    if (res) {
+                        toast.success("Delete Success!");
+                        mutate("http://localhost:8000/blogs");
+                    }
+                });
+        }
+    };
     return (
         <>
             <div className="mb-3 d-flex justify-content-between">
@@ -60,7 +80,14 @@ function AppTable(props: IProps) {
                                     >
                                         Edit
                                     </Button>
-                                    <Button variant="danger">Delete</Button>
+                                    <Button
+                                        variant="danger"
+                                        onClick={() => {
+                                            handleDelete(item.id);
+                                        }}
+                                    >
+                                        Delete
+                                    </Button>
                                 </td>
                             </tr>
                         );
