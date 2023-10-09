@@ -1,13 +1,16 @@
 "use client";
 import { Table, Button } from "react-bootstrap";
-import ModalStaticBackdrop from "./Modal";
+import AddNewModal from "./add.modal";
+import UpdateModal from "./update.modal";
 import { useState } from "react";
 interface IProps {
     blogs: IBlog[];
 }
 function AppTable(props: IProps) {
     const { blogs } = props;
+    const [blog, setBlog] = useState<IBlog | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
+    const [showEditModal, setShowEditModal] = useState<boolean>(false);
     return (
         <>
             <div className="mb-3 d-flex justify-content-between">
@@ -16,9 +19,12 @@ function AppTable(props: IProps) {
                     Add new
                 </Button>
             </div>
-            <ModalStaticBackdrop
-                showModal={showModal}
-                setShowModal={setShowModal}
+            <AddNewModal showModal={showModal} setShowModal={setShowModal} />
+            <UpdateModal
+                showEditModal={showEditModal}
+                setShowEditModal={setShowEditModal}
+                blog={blog}
+                setBlog={setBlog}
             />
             <Table striped bordered hover>
                 <thead>
@@ -30,15 +36,22 @@ function AppTable(props: IProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {blogs?.map((blog) => {
+                    {blogs?.map((item) => {
                         return (
-                            <tr key={blog.id}>
-                                <td>{blog.id}</td>
-                                <td>{blog.title}</td>
-                                <td>{blog.author}</td>
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.title}</td>
+                                <td>{item.author}</td>
                                 <td>
                                     <Button>View</Button>
-                                    <Button variant="warning" className="mx-3">
+                                    <Button
+                                        variant="warning"
+                                        className="mx-3"
+                                        onClick={() => {
+                                            setBlog(item);
+                                            setShowEditModal(true);
+                                        }}
+                                    >
                                         Edit
                                     </Button>
                                     <Button variant="danger">View</Button>

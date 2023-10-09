@@ -4,13 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 
 interface IProps {
     showModal: boolean;
     setShowModal: (v: boolean) => void;
 }
 
-function ModalStaticBackdrop(props: IProps) {
+function AddNewModal(props: IProps) {
     const { showModal, setShowModal } = props;
     // const [show, setShow] = useState(false);
     const handleClose = () => {
@@ -45,6 +46,7 @@ function ModalStaticBackdrop(props: IProps) {
                 if (res) {
                     toast.success("Success!");
                     handleClose();
+                    mutate("http://localhost:8000/blogs");
                 }
             });
     };
@@ -117,4 +119,4 @@ function ModalStaticBackdrop(props: IProps) {
     );
 }
 
-export default ModalStaticBackdrop;
+export default AddNewModal;

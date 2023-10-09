@@ -3,7 +3,7 @@
 // import Link from "next/link";
 // import style1 from "@/styles/app.module.css";
 // import style2 from "@/styles/cikey.module.css";
-import Table from "@/components/Table";
+import Table from "@/components/app.table";
 import { useEffect } from "react";
 import useSWR from "swr";
 
@@ -29,7 +29,7 @@ export default function Home() {
         }
     );
 
-    if (!data) {
+    if (isLoading) {
         return <div>...loading</div>;
     }
 
@@ -43,7 +43,7 @@ export default function Home() {
                 </Link>
                 <Link href="/tiktok">Tiktok</Link>
                 <Link href="/youtube">Youtube</Link> */}
-                <Table blogs={data} />
+                <Table blogs={data?.sort((a: any, b: any) => b.id - a.id)} />
             </div>
         </main>
     );

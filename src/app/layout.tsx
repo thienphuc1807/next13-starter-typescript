@@ -2,8 +2,8 @@
 // import "./globals.css";
 // import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/app.header";
+import Footer from "@/components/app.footer";
 import { Container } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
