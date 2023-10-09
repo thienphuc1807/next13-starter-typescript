@@ -24,6 +24,9 @@ function Header() {
                         <Link href={"/youtube"} className="nav-link">
                             Youtube
                         </Link>
+                        <Link href={"/blogs"} className="nav-link">
+                            Blogs
+                        </Link>
                     </Nav>
                 </Container>
             </Navbar>

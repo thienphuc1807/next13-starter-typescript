@@ -3,6 +3,7 @@ import { Table, Button } from "react-bootstrap";
 import AddNewModal from "./add.modal";
 import UpdateModal from "./update.modal";
 import { useState } from "react";
+import Link from "next/link";
 interface IProps {
     blogs: IBlog[];
 }
@@ -43,7 +44,12 @@ function AppTable(props: IProps) {
                                 <td>{item.title}</td>
                                 <td>{item.author}</td>
                                 <td>
-                                    <Button>View</Button>
+                                    <Link
+                                        className="btn btn-primary"
+                                        href={`/blogs/${item.id}`}
+                                    >
+                                        View
+                                    </Link>
                                     <Button
                                         variant="warning"
                                         className="mx-3"
@@ -54,7 +60,7 @@ function AppTable(props: IProps) {
                                     >
                                         Edit
                                     </Button>
-                                    <Button variant="danger">View</Button>
+                                    <Button variant="danger">Delete</Button>
                                 </td>
                             </tr>
                         );
